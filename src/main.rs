@@ -15,14 +15,14 @@ struct RecalibrationPath {
 }
 
 impl IntoIterator for RecalibrationPath {
-    type Item = u32;
+    type Item = i32;
     type IntoIter = std::vec::IntoIter<Self::Item>;
 
     fn into_iter(self) -> Self::IntoIter {
         self.ids
             .split('/')
-            .filter_map(|x| x.parse::<u32>().ok())
-            .collect::<Vec<u32>>()
+            .filter_map(|x| x.parse::<Self::Item>().ok())
+            .collect::<Vec<_>>()
             .into_iter()
     }
 }
